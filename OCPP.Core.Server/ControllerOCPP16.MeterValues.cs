@@ -192,7 +192,7 @@ namespace OCPP.Core.Server
                         if (meterKWH >= 0)
                         {
                             UpdateConnectorStatus(connectorId, null, null, meterKWH, meterTime);
-                            UpdateMemoryConnectorStatus(connectorId, meterKWH, meterTime, currentChargeKW, stateOfCharge);
+                            UpdateMemoryConnectorStatus(connectorId, meterKWH, meterTime, currentChargeKW, stateOfCharge, voltage, currentImport, temperature);
                         }
                     }
                 }
