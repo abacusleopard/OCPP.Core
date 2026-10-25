@@ -163,19 +163,19 @@ namespace OCPP.Core.Server
                                     Logger.LogError("MeterValues => invalid value '{0}' (SoC)", sampleValue.Value);
                                 }
                             }
-                            else if (sampledValue.Measurand == "Voltage")
+                            else if (sampleValue.Measurand == "Voltage")
                             {
                                 // Capture the voltage measurement.
                                 voltage = parsedValue;
 
                             }
-                            else if (sampledValue.Measurand == "Current.Import")
+                            else if (sampleValue.Measurand == "Current.Import")
                             {
                                 // Capture the current measurement.
                                 currentImport = parsedValue;
                                 
                             }
-                            else if (sampledValue.Measurand == "Temperature")
+                            else if (sampleValue.Measurand == "Temperature")
                             {
                                 // Capture the temperature measurement.
                                 temperature = parsedValue;
@@ -187,7 +187,7 @@ namespace OCPP.Core.Server
                     // write charging/meter data in chargepoint status
                     if (connectorId > 0)
                     {
-                        msgMeterValue = $"Meter (kWh): {meterKWH} | Charge (kW): {currentChargeKW} | SoC (%): {stateOfCharge}";
+                        msgMeterValue = $"Meter (kWh): {meterKWH} | Charge (kW): {currentChargeKW} | SoC (%): {stateOfCharge} | Voltage (v): {voltage} | Current (A): {currentImport} | Temperature (°C): {temperature}";
 
                         if (meterKWH >= 0)
                         {
