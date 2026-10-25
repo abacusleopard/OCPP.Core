@@ -79,6 +79,9 @@ namespace OCPP.Core.Server
                     double meterKWH = -1;
                     DateTimeOffset meterTime = DateTime.UtcNow;
                     double stateOfCharge = -1;
+                    double voltage = 0;
+                    double currentImport = 0;
+                    double temperature = 0;
                     foreach (MeterValue meterValue in meterValueRequest.MeterValue)
                     {
                         foreach (SampledValue sampleValue in meterValue.SampledValue)
@@ -159,6 +162,24 @@ namespace OCPP.Core.Server
                                 {
                                     Logger.LogError("MeterValues => invalid value '{0}' (SoC)", sampleValue.Value);
                                 }
+                            }
+                            else if (sampledValue.Measurand == "Voltage")
+                            {
+                                // Capture the voltage measurement.
+                                voltage = parsedValue;
+
+                            }
+                            else if (sampledValue.Measurand == "Current.Import")
+                            {
+                                // Capture the current measurement.
+                                currentImport = parsedValue;
+                                
+                            }
+                            else if (sampledValue.Measurand == "Temperature")
+                            {
+                                // Capture the temperature measurement.
+                                temperature = parsedValue;
+                             
                             }
                         }
                     }
