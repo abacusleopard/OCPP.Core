@@ -166,19 +166,19 @@ namespace OCPP.Core.Server
                             else if (sampleValue.Measurand == "Voltage")
                             {
                                 // Capture the voltage measurement.
-                                voltage = parsedValue;
+                                voltage = sampleValue.Value;
 
                             }
                             else if (sampleValue.Measurand == "Current.Import")
                             {
                                 // Capture the current measurement.
-                                currentImport = parsedValue;
+                                currentImport = sampleValue.Value;
                                 
                             }
                             else if (sampleValue.Measurand == "Temperature")
                             {
                                 // Capture the temperature measurement.
-                                temperature = parsedValue;
+                                temperature = sampleValue.Value;
                              
                             }
                         }
