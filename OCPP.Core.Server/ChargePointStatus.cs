@@ -147,6 +147,21 @@ namespace OCPP.Core.Server
         /// StateOfCharges in percent
         /// </summary>
         public double? SoC { get; set; }
+
+        /// <summary>
+        /// Current meter voltage value in v
+        /// </summary>
+        public double? Voltage { get; set; }
+
+        /// <summary>
+        /// Current meter current value in A
+        /// </summary>
+        public double? Current { get; set; }
+
+        /// <summary>
+        /// Current meter temperature value in C
+        /// </summary>
+        public double? Temperature { get; set; }
     }
 
     public enum ConnectorStatusEnum
