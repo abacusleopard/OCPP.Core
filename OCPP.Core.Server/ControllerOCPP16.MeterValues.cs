@@ -163,23 +163,45 @@ namespace OCPP.Core.Server
                                     Logger.LogError("MeterValues => invalid value '{0}' (SoC)", sampleValue.Value);
                                 }
                             }
-                            else if (sampleValue.Measurand == "Voltage")
+                            else if (sampleValue.Measurand == SampledValueMeasurand.Voltage)
                             {
-                                // Capture the voltage measurement.
-                                voltage = sampleValue.Value;
-
+                                // Capture and parse the voltage measurement
+                                if (double.TryParse(sampleValue.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out double parsedVoltage))
+                                {
+                                    voltage = parsedVoltage;
+                                    Logger.LogTrace("MeterValues => Voltage: '{0:0.0}' V", voltage);
+                                }
+                                else
+                                {
+                                    Logger.LogError("MeterValues => invalid value '{0}' (Voltage)", sampleValue.Value);
+                                }
                             }
-                            else if (sampleValue.Measurand == "Current.Import")
+                            else if (sampleValue.Measurand == SampledValueMeasurand.Current_Import)
                             {
-                                // Capture the current measurement.
-                                currentImport = sampleValue.Value;
+                                // Capture and parse the current measurement
+                                if (double.TryParse(sampleValue.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out double parsedCurrent))
+                                {
+                                    currentImport = parsedCurrent;
+                                    Logger.LogTrace("MeterValues => Current.Import: '{0:0.0}' A", currentImport);
+                                }
+                                else
+                                {
+                                    Logger.LogError("MeterValues => invalid value '{0}' (Current.Import)", sampleValue.Value);
+                                }
                                 
                             }
-                            else if (sampleValue.Measurand == "Temperature")
+                            else if (sampleValue.Measurand == SampledValueMeasurand.Temperature)
                             {
-                                // Capture the temperature measurement.
-                                temperature = sampleValue.Value;
-                             
+                                // Capture and parse the temperature measurement
+                                if (double.TryParse(sampleValue.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out double parsedTemp))
+                                {
+                                    temperature = parsedTemp;
+                                    Logger.LogTrace("MeterValues => Temperature: '{0:0.0}' °C", temperature);
+                                }
+                                else
+                                {
+                                    Logger.LogError("MeterValues => invalid value '{0}' (Temperature)", sampleValue.Value);
+                                }
                             }
                         }
                     }
